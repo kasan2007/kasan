@@ -1,0 +1,876 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "basePath": "/proxy",
+    "paths": {
+        "/ftp/": {
+            "get": {
+                "tags": [
+                    "ftp"
+                ],
+                "description": "get all TCP Proxy",
+                "operationId": "FtpController.GetAll",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/services.FtpProxy"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "ftp"
+                ],
+                "description": "create users",
+                "operationId": "FtpController.CreateUser",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "config for TCP Proxy",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/services.FtpProxy"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/ftp/{port}": {
+            "get": {
+                "tags": [
+                    "ftp"
+                ],
+                "description": "get tcp config",
+                "operationId": "FtpController.Get",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "port",
+                        "description": "get the config for TCP port",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/services.FtpProxy"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "ftp"
+                ],
+                "description": "delete the TCP Proxy",
+                "operationId": "FtpController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "port",
+                        "description": "The TCP port you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/http/": {
+            "get": {
+                "tags": [
+                    "http"
+                ],
+                "description": "get all Http Proxy",
+                "operationId": "HttpController.GetAll",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/services.HttpProxy"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "http"
+                ],
+                "description": "create http",
+                "operationId": "HttpController.Create http",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for http config",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/services.HttpProxy"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/http/{domain}": {
+            "get": {
+                "tags": [
+                    "http"
+                ],
+                "description": "get http by domain",
+                "operationId": "HttpController.Get",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "domain",
+                        "description": "The domain",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/services.HttpProxy"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "http"
+                ],
+                "description": "delete the domain",
+                "operationId": "HttpController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "domain",
+                        "description": "The domain you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/session/": {
+            "get": {
+                "tags": [
+                    "session"
+                ],
+                "description": "get all Sessions",
+                "operationId": "LoginController.GetAll",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/session.Session"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "session"
+                ],
+                "description": "login One Token",
+                "operationId": "LoginController.Login One Token",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "config you want to login",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/session.Session"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/session/{RunId}": {
+            "get": {
+                "tags": [
+                    "session"
+                ],
+                "description": "get token by RunId",
+                "operationId": "LoginController.Get",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "RunId",
+                        "description": "The RunId in Token",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/session.Session"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "session"
+                ],
+                "description": "delete the token",
+                "operationId": "LoginController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "RunId",
+                        "description": "The RunId you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/setting/": {
+            "get": {
+                "tags": [
+                    "setting"
+                ],
+                "description": "get all Settings",
+                "operationId": "SettingController.GetAll",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/.Setting"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "setting"
+                ],
+                "description": "Create or modify one setting",
+                "operationId": "SettingController.Create or modify one setting",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "settings",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.SettingModel"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/setting/{key}": {
+            "get": {
+                "tags": [
+                    "setting"
+                ],
+                "description": "get the value of the key",
+                "operationId": "SettingController.Get",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "key",
+                        "description": "the key of the setting",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string}"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "setting"
+                ],
+                "description": "delete the map of the key",
+                "operationId": "SettingController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "key",
+                        "description": "The key port you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/tcp/": {
+            "get": {
+                "tags": [
+                    "tcp"
+                ],
+                "description": "get all TCP Proxy",
+                "operationId": "TCPController.GetAll",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/services.TCPProxy"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "tcp"
+                ],
+                "description": "create users",
+                "operationId": "TCPController.CreateUser",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "config for TCP Proxy",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/services.TCPProxy"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/tcp/{port}": {
+            "get": {
+                "tags": [
+                    "tcp"
+                ],
+                "description": "get tcp config",
+                "operationId": "TCPController.Get",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "port",
+                        "description": "get the config for TCP port",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/services.TCPProxy"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "tcp"
+                ],
+                "description": "delete the TCP Proxy",
+                "operationId": "TCPController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "port",
+                        "description": "The TCP port you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/udp/": {
+            "get": {
+                "tags": [
+                    "udp"
+                ],
+                "description": "get all UDP Proxy",
+                "operationId": "UDPController.GetAll",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/services.UDPProxy"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "udp"
+                ],
+                "description": "create users",
+                "operationId": "UDPController.CreateUser",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "UDP config",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/services.UDPProxy"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/udp/{port}": {
+            "get": {
+                "tags": [
+                    "udp"
+                ],
+                "description": "get user by uid",
+                "operationId": "UDPController.Get",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "port",
+                        "description": "udp port",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/services.UDPProxy"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "udp"
+                ],
+                "description": "delete the port",
+                "operationId": "UDPController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "port",
+                        "description": "The port you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/vpn/": {
+            "delete": {
+                "tags": [
+                    "vpn"
+                ],
+                "description": "delete the VPN",
+                "operationId": "VPNController.Delete VPN",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/vpn/{runId}": {
+            "post": {
+                "tags": [
+                    "vpn"
+                ],
+                "description": "create the VPN by runId",
+                "operationId": "VPNController.Create VPN",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "runId",
+                        "description": "The VPN of runId you want to create",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/ws/connect/serialPort": {
+            "get": {
+                "tags": [
+                    "ws"
+                ],
+                "description": "Use Ws connect to serial port Target",
+                "operationId": "WsController.Connect To serial port Target"
+            }
+        },
+        "/ws/connect/ssh": {
+            "get": {
+                "tags": [
+                    "ws"
+                ],
+                "description": "Use Ws connect to ssh Target",
+                "operationId": "WsController.Connect To SSH Target"
+            }
+        },
+        "/ws/connect/tcp": {
+            "get": {
+                "tags": [
+                    "ws"
+                ],
+                "description": "Use Ws connect to TCP Target",
+                "operationId": "WsController.Connect To TCP Target"
+            }
+        },
+        "/ws/connect/udp": {
+            "get": {
+                "tags": [
+                    "ws"
+                ],
+                "description": "Use Ws connect to UDP Target",
+                "operationId": "WsController.Connect To UDP Target"
+            }
+        }
+    },
+    "definitions": {
+        ".Listener": {
+            "type": "object"
+        },
+        ".Session": {
+            "type": "object"
+        },
+        ".Setting": {
+            "type": "object"
+        },
+        ".Timer": {
+            "type": "object"
+        },
+        ".UDPConn": {
+            "type": "object"
+        },
+        ".UdpCli": {
+            "type": "object"
+        },
+        ".UdpPacket": {
+            "type": "object"
+        },
+        ".bool": {
+            "type": "object"
+        },
+        "models.Response": {
+            "title": "Response",
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "realLocalPort": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "runId": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.SettingModel": {
+            "title": "SettingModel",
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "type": "string"
+                },
+                "Value": {
+                    "type": "string"
+                }
+            }
+        },
+        "services.FtpProxy": {
+            "title": "FtpProxy",
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "type": "string"
+                },
+                "LocalIP": {
+                    "type": "string"
+                },
+                "LocalProt": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "RemoteIP": {
+                    "type": "string"
+                },
+                "RemotePort": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "RemotePortStatus": {
+                    "type": "boolean"
+                },
+                "RunId": {
+                    "type": "string"
+                },
+                "listenner": {
+                    "$ref": "#/definitions/net.Listener"
+                }
+            }
+        },
+        "services.HttpProxy": {
+            "title": "HttpProxy",
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "type": "string"
+                },
+                "Domain": {
+                    "type": "string"
+                },
+                "IfHttps": {
+                    "type": "boolean"
+                },
+                "Password": {
+                    "type": "string"
+                },
+                "RemoteIP": {
+                    "type": "string"
+                },
+                "RemotePort": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "RemotePortStatus": {
+                    "type": "boolean"
+                },
+                "RunId": {
+                    "type": "string"
+                },
+                "UserName": {
+                    "type": "string"
+                }
+            }
+        },
+        "services.TCPProxy": {
+            "title": "TCPProxy",
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "type": "string"
+                },
+                "LocalIP": {
+                    "type": "string"
+                },
+                "LocalProt": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "RemoteIP": {
+                    "type": "string"
+                },
+                "RemotePort": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "RemotePortStatus": {
+                    "type": "boolean"
+                },
+                "RunId": {
+                    "type": "string"
+                },
+                "listenner": {
+                    "$ref": "#/definitions/net.Listener"
+                }
+            }
+        },
+        "services.UDPProxy": {
+            "title": "UDPProxy",
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "type": "string"
+                },
+                "LocalIP": {
+                    "type": "string"
+                },
+                "LocalProt": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "RemoteIP": {
+                    "type": "string"
+                },
+                "RemotePort": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "RemotePortStatus": {
+                    "type": "boolean"
+                },
+                "RunId": {
+                    "type": "string"
+                },
+                "udpConn": {
+                    "$ref": "#/definitions/net.UDPConn"
+                },
+                "udpclis": {
+                    "$ref": "#/definitions/22377.UdpCli"
+                },
+                "writeChan": {
+                    "$ref": "#/definitions/22403.0.3.UdpPacket"
+                }
+            }
+        },
+        "session.Session": {
+            "title": "Session",
+            "type": "object",
+            "properties": {
+                "Description": {
+                    "type": "string"
+                },
+                "RunId": {
+                    "type": "string"
+                },
+                "StatusP2PAsClient": {
+                    "type": "boolean"
+                },
+                "StatusP2PAsServer": {
+                    "type": "boolean"
+                },
+                "StatusToClient": {
+                    "type": "boolean"
+                },
+                "Token": {
+                    "type": "string"
+                },
+                "clientSession": {
+                    "$ref": "#/definitions/mux.Session"
+                },
+                "heartbeat": {
+                    "$ref": "#/definitions/time.Timer"
+                },
+                "p2pSessionAsClient": {
+                    "$ref": "#/definitions/mux.Session"
+                },
+                "p2pSessionAsServer": {
+                    "$ref": "#/definitions/mux.Session"
+                },
+                "quitTimer": {
+                    "$ref": "#/definitions/9870.0.3.bool"
+                }
+            }
+        }
+    }
+}
